@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UNT Portfolio | 關於</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <div class="container">
+        <div id="shared-nav"></div>
+
+        <main class="main-content" data-page="about">
+            <!-- Floating decorative elements -->
+            <div class="floating-element">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="2" fill="currentColor"/>
+                    <circle cx="30" cy="30" r="15" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="0.3" fill="none"/>
+                </svg>
+            </div>
+            <div class="floating-element">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="18" y="18" width="4" height="4" fill="currentColor"/>
+                    <rect x="10" y="10" width="20" height="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                </svg>
+            </div>
+
+            <section class="info-section" style="display:block; padding-top:20px;">
+                <h1 class="hero-title" data-en="About Me" data-zh="關於我">關於我</h1>
+                <div class="section-text">
+                    <p class="hero-description" data-en="I am a photography student focusing on portraiture, inspired by Japanese minimalism. My approach emphasizes natural light, balanced composition, and authentic emotion." data-zh="我是一名專注於人像攝影的學生，受日式極簡主義啟發。我的創作著重於自然光、平衡的構圖與真實情感。">我是一名專注於人像攝影的學生，受日式極簡主義啟發。我的創作著重於自然光、平衡的構圖與真實情感。</p>
+                    <p class="hero-description" data-en="Every portrait is a dialogue between the subject and the moment—quiet, deliberate, and meaningful." data-zh="每一次人像創作，都是被攝者與當下之間的對話——安靜、克制且富有意義。">每一次人像創作，都是被攝者與當下之間的對話——安靜、克制且富有意義。</p>
+                </div>
+
+                <div class="section-text section-text--narrow" style="margin-top:30px;">
+                    <h2 class="section-heading" data-en="Philosophy" data-zh="創作理念">創作理念</h2>
+                    <p class="hero-description" data-en="Minimal elements, intentional choices. I look for balance in light and shadow to bring out sincerity and subtlety." data-zh="極簡元素與有意識的選擇。我在光影的平衡中尋找真誠與細膩。">極簡元素與有意識的選擇。我在光影的平衡中尋找真誠與細膩。</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="assets/js/script.js"></script>
+    <script>
+
+        // Inject shared navigation
+        async function loadSharedNav() {
+            const mount = document.getElementById('shared-nav');
+            if (!mount) return;
+            try {
+                const res = await fetch('components/nav.html', { cache: 'no-cache' });
+                const html = await res.text();
+                mount.innerHTML = html;
+
+                // Mark active link for this page
+                const active = mount.querySelector('a[href="about.html"]');
+                if (active) active.classList.add('active');
+            } catch (e) {
+                console.error('Failed to load shared nav:', e);
+            }
+        }
+
+        loadSharedNav();
+
+        // Reflect aria-expanded on menu toggle when sidebar state changes
+        const menuBtn = document.querySelector('.menu-toggle');
+        const observer = new MutationObserver(() => {
+            const sidebar = document.getElementById('sidebar');
+            if (menuBtn && sidebar) {
+                menuBtn.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
+                menuBtn.setAttribute('aria-label', sidebar.classList.contains('open') ? 'Close menu' : 'Open menu');
+            }
+        });
+        const startObserving = () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+        };
+        startObserving();
+        setTimeout(startObserving, 300);
+    </script>
+</body>
+</html>

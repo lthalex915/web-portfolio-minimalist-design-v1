@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UNT Portfolio | 作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <div class="container">
+        <div id="shared-nav"></div>
+
+        <main class="main-content" data-page="gallery">
+            <div class="floating-element">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="2" fill="currentColor"/>
+                    <circle cx="30" cy="30" r="15" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="0.3" fill="none"/>
+                </svg>
+            </div>
+            <div class="floating-element">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="18" y="18" width="4" height="4" fill="currentColor"/>
+                    <rect x="10" y="10" width="20" height="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                </svg>
+            </div>
+
+            <section class="info-section" style="display:block; padding-top:20px;">
+                <h1 class="hero-title" data-en="Gallery" data-zh="作品集">作品集</h1>
+                <p class="hero-description" data-en="A selection of portrait works exploring light, composition, and emotion." data-zh="精選人像作品，探索光線、構圖與情感。">精選人像作品，探索光線、構圖與情感。</p>
+
+                <div class="gallery-grid" style="opacity:1; animation:none;">
+                    <!-- Use actual images from assets/photography when available -->
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/1.jpg" alt="Portrait 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f0f0ea%27/%3E%3Ccircle cx=%27150%27 cy=%27100%27 r=%2740%27 fill=%27%23d5d5ce%27/%3E%3Crect x=%27110%27 y=%27150%27 width=%2780%27 height=%2780%27 fill=%27%23e0e0d8%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/2.jpg" alt="Portrait 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23ebe9e0%27/%3E%3Ccircle cx=%27150%27 cy=%2790%27 r=%2735%27 fill=%27%23d0cec5%27/%3E%3Crect x=%27115%27 y=%27140%27 width=%2770%27 height=%2790%27 fill=%27%23dbd9d0%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/3.jpg" alt="Portrait 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f2f0e8%27/%3E%3Ccircle cx=%27150%27 cy=%2795%27 r=%2738%27 fill=%27%23d3d1c8%27/%3E%3Crect x=%27112%27 y=%27145%27 width=%2776%27 height=%2785%27 fill=%27%23dddbd2%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/4.jpg" alt="Portrait 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f5f3eb%27/%3E%3Ccircle cx=%27150%27 cy=%27105%27 r=%2742%27 fill=%27%23d8d6ce%27/%3E%3Crect x=%27108%27 y=%27155%27 width=%2784%27 height=%2775%27 fill=%27%23e2e0d8%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/5.jpg" alt="Portrait 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23ede9e1%27/%3E%3Ccircle cx=%27150%27 cy=%2785%27 r=%2737%27 fill=%27%23d2cec6%27/%3E%3Crect x=%27113%27 y=%27135%27 width=%2774%27 height=%2795%27 fill=%27%23ddd9d1%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/6.jpg" alt="Portrait 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f1ede5%27/%3E%3Ccircle cx=%27150%27 cy=%27110%27 r=%2745%27 fill=%27%23d6d2ca%27/%3E%3Crect x=%27105%27 y=%27165%27 width=%2790%27 height=%2770%27 fill=%27%23e0dcd4%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/7.jpg" alt="Portrait 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23eee8e0%27/%3E%3Ccircle cx=%27150%27 cy=%2792%27 r=%2739%27 fill=%27%23d4cfc7%27/%3E%3Crect x=%27111%27 y=%27142%27 width=%2778%27 height=%2788%27 fill=%27%23dfdbd3%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/8.jpg" alt="Portrait 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f3efE7%27/%3E%3Ccircle cx=%27150%27 cy=%27108%27 r=%2743%27 fill=%27%23d7d3cb%27/%3E%3Crect x=%27107%27 y=%27158%27 width=%2786%27 height=%2772%27 fill=%27%23e1ddd5%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="assets/photography/9.jpg" alt="Portrait 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27250%27 viewBox=%270 0 300 250%27%3E%3Crect width=%27300%27 height=%27250%27 fill=%27%23f0eae2%27/%3E%3Ccircle cx=%27150%27 cy=%2798%27 r=%2741%27 fill=%27%23d5d1c9%27/%3E%3Crect x=%27109%27 y=%27148%27 width=%2782%27 height=%2782%27 fill=%27%23dedad2%27 rx=%275%27/%3E%3C/svg%3E';"/>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="assets/js/script.js"></script>
+    <script>
+
+        // Inject shared navigation
+        async function loadSharedNav() {
+            const mount = document.getElementById('shared-nav');
+            if (!mount) return;
+            try {
+                const res = await fetch('components/nav.html', { cache: 'no-cache' });
+                const html = await res.text();
+                mount.innerHTML = html;
+
+                // Mark active link for this page
+                const active = mount.querySelector('a[href="gallery.html"]');
+                if (active) active.classList.add('active');
+            } catch (e) {
+                console.error('Failed to load shared nav:', e);
+            }
+        }
+
+        loadSharedNav();
+
+        // Reflect aria-expanded on menu toggle when sidebar state changes
+        const menuBtn = document.querySelector('.menu-toggle');
+        const observer = new MutationObserver(() => {
+            const sidebar = document.getElementById('sidebar');
+            if (menuBtn && sidebar) {
+                menuBtn.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
+                menuBtn.setAttribute('aria-label', sidebar.classList.contains('open') ? 'Close menu' : 'Open menu');
+            }
+        });
+        const startObserving = () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+        };
+        startObserving();
+        setTimeout(startObserving, 300);
+    </script>
+</body>
+</html>

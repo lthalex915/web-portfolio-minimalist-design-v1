@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UNT Portfolio | 聯絡</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <div class="container">
+        <div id="shared-nav"></div>
+
+        <main class="main-content" data-page="contact">
+            <!-- Floating decorative elements -->
+            <div class="floating-element">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="2" fill="currentColor"/>
+                    <circle cx="30" cy="30" r="15" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="0.3" fill="none"/>
+                </svg>
+            </div>
+            <div class="floating-element">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="18" y="18" width="4" height="4" fill="currentColor"/>
+                    <rect x="10" y="10" width="20" height="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                </svg>
+            </div>
+
+            <section class="info-section" style="display:block; padding-top:20px;">
+                <h1 class="hero-title" data-en="Contact" data-zh="聯絡方式">聯絡方式</h1>
+                <p class="hero-description" data-en="Let's create something beautiful together. Reach out for collaborations, bookings, or just to say hello." data-zh="讓我們一起創造美好的作品。歡迎聯絡我進行合作、預約，或只是打個招呼。">讓我們一起創造美好的作品。歡迎聯絡我進行合作、預約，或只是打個招呼。</p>
+
+                <div class="section-text section-text--narrow" style="margin-top:30px;">
+                    <form id="contact-form" style="display:grid; gap:16px;">
+                        <label class="hero-description" for="name" data-en="Name" data-zh="姓名">姓名</label>
+                        <input id="name" name="name" type="text" placeholder="Your name" style="padding:12px 14px; border:1px solid var(--accent-color); border-radius:8px; background:#fff; font-family:inherit;"/>
+
+                        <label class="hero-description" for="email" data-en="Email" data-zh="電子郵件">電子郵件</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" style="padding:12px 14px; border:1px solid var(--accent-color); border-radius:8px; background:#fff; font-family:inherit;"/>
+
+                        <label class="hero-description" for="message" data-en="Message" data-zh="訊息">訊息</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message..." style="padding:12px 14px; border:1px solid var(--accent-color); border-radius:8px; background:#fff; font-family:inherit; resize:vertical;"></textarea>
+
+                        <button type="submit" class="cta-button" style="width:max-content;" data-en="Send" data-zh="送出">送出</button>
+                        <p id="form-status" class="hero-description" style="margin-top:8px; display:none;"></p>
+                    </form>
+
+                    <div class="contact-info" style="margin-top:30px;">
+                        <p class="contact-detail">
+                            <strong data-en="Email:" data-zh="電子郵件：">電子郵件：</strong>
+                            <span data-en="hello@untportfolio.com" data-zh="hello@untportfolio.com">hello@untportfolio.com</span>
+                        </p>
+                        <p class="contact-detail">
+                            <strong data-en="Instagram:" data-zh="Instagram：">Instagram：</strong>
+                            <span data-en="@unt_photography" data-zh="@unt_photography">@unt_photography</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="assets/js/script.js"></script>
+    <script>
+
+        // Inject shared navigation
+        async function loadSharedNav() {
+            const mount = document.getElementById('shared-nav');
+            if (!mount) return;
+            try {
+                const res = await fetch('components/nav.html', { cache: 'no-cache' });
+                const html = await res.text();
+                mount.innerHTML = html;
+
+                // Mark active link for this page
+                const active = mount.querySelector('a[href="contact.html"]');
+                if (active) active.classList.add('active');
+            } catch (e) {
+                console.error('Failed to load shared nav:', e);
+            }
+        }
+
+        loadSharedNav();
+
+        // Reflect aria-expanded on menu toggle when sidebar state changes
+        const menuBtn = document.querySelector('.menu-toggle');
+        const observer = new MutationObserver(() => {
+            const sidebar = document.getElementById('sidebar');
+            if (menuBtn && sidebar) {
+                menuBtn.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
+                menuBtn.setAttribute('aria-label', sidebar.classList.contains('open') ? 'Close menu' : 'Open menu');
+            }
+        });
+        const startObserving = () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+        };
+        startObserving();
+        setTimeout(startObserving, 300);
+
+        // Lightweight client-side validation and UX only (no backend submission)
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+
+        function validateEmail(v){
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        }
+
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = (document.getElementById('name') || {}).value?.trim();
+                const email = (document.getElementById('email') || {}).value?.trim();
+                const message = (document.getElementById('message') || {}).value?.trim();
+
+                if (!name || !email || !message) {
+                    status.style.display = 'block';
+                    status.style.color = '#b00020';
+                    status.textContent = document.documentElement.lang === 'en' ? 
+                        'Please fill in all fields.' : '請完整填寫所有欄位。';
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    status.style.display = 'block';
+                    status.style.color = '#b00020';
+                    status.textContent = document.documentElement.lang === 'en' ? 
+                        'Please enter a valid email.' : '請輸入有效的電子郵件。';
+                    return;
+                }
+
+                status.style.display = 'block';
+                status.style.color = 'green';
+                status.textContent = document.documentElement.lang === 'en' ? 
+                    'Message prepared. No backend configured.' : '訊息已準備。尚未設定後端寄送功能。';
+
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNT Portfolio | 人像攝影作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+    
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <div class="container">
+        <div id="shared-nav"></div>
+
+        <main class="main-content" data-page="index">
+            <!-- Floating decorative elements -->
+            <div class="floating-element">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="2" fill="currentColor"/>
+                    <circle cx="30" cy="30" r="15" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                    <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="0.3" fill="none"/>
+                </svg>
+            </div>
+            <div class="floating-element">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="18" y="18" width="4" height="4" fill="currentColor"/>
+                    <rect x="10" y="10" width="20" height="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                </svg>
+            </div>
+
+            <section id="home" class="hero-section">
+                <div class="hero-text">
+                    <h1 class="hero-title" data-en="Portrait<br>Photography" data-zh="人像<br>攝影">人像<br>攝影</h1>
+                    <p class="hero-subtitle" data-en="Capturing moments, creating memories" data-zh="捕捉瞬間，創造回憶">捕捉瞬間，創造回憶</p>
+                    <p class="hero-description" data-en="Through the lens of minimalist aesthetics, I explore the delicate balance between light and shadow, emotion and stillness. Each portrait tells a unique story, captured with precision and artistic sensitivity." data-zh="透過極簡美學的鏡頭，我探索光影與情感、動靜之間的微妙平衡。每一幅人像都訴說著獨特的故事，以精準和藝術敏感度捕捉。">透過極簡美學的鏡頭，我探索光影與情感、動靜之間的微妙平衡。每一幅人像都訴說著獨特的故事，以精準和藝術敏感度捕捉。</p>
+                    <a href="gallery.html" class="cta-button" data-en="View Portfolio" data-zh="查看作品集">查看作品集</a>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='600' viewBox='0 0 500 600'%3E%3Crect width='500' height='600' fill='%23f5f5f0'/%3E%3Cg transform='translate(50 50)'%3E%3Crect x='0' y='0' width='400' height='500' fill='%23e8e8e0' rx='20'/%3E%3Ccircle cx='200' cy='150' r='60' fill='%23d0d0c8'/%3E%3Crect x='140' y='220' width='120' height='200' fill='%23d8d8d0' rx='10'/%3E%3Ctext x='200' y='480' text-anchor='middle' font-family='serif' font-size='16' fill='%23666'%3EPortrait Study%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Portrait Photography" class="hero-img">
+                        <div class="image-overlay">
+                            <p data-en="Featured Work" data-zh="精選作品">精選作品</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+        </main>
+    </div>
+
+    <script type="module" src="assets/js/script.js"></script>
+    <script>
+
+        // Inject shared navigation
+        async function loadSharedNav() {
+            const mount = document.getElementById('shared-nav');
+            if (!mount) return;
+            try {
+                const res = await fetch('components/nav.html', { cache: 'no-cache' });
+                const html = await res.text();
+                mount.innerHTML = html;
+
+                // After injection: mark active item based on current page/hash
+                const path = location.pathname.split('/').pop() || 'index.html';
+                const hash = location.hash || '#home';
+                let selector = '';
+
+                if (path === '' || path === 'index.html') {
+                    // On index, decide by hash
+                    selector = hash === '' ? 'a[href="index.html#home"]' : `a[href="index.html${hash}"]`;
+                } else {
+                    selector = `a[href="${path}"]`;
+                }
+
+                // If no match (e.g., index without hash), fallback to home
+                let active = mount.querySelector(selector);
+                if (!active && (path === '' || path === 'index.html')) {
+                    active = mount.querySelector('a[href="index.html#home"]');
+                }
+                if (active) active.classList.add('active');
+            } catch (e) {
+                console.error('Failed to load shared nav:', e);
+            }
+        }
+
+        loadSharedNav();
+
+        // Reflect aria-expanded on menu toggle when sidebar state changes
+        const menuBtn = document.querySelector('.menu-toggle');
+        const observer = new MutationObserver(() => {
+            const sidebar = document.getElementById('sidebar');
+            if (menuBtn && sidebar) {
+                menuBtn.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
+                menuBtn.setAttribute('aria-label', sidebar.classList.contains('open') ? 'Close menu' : 'Open menu');
+            }
+        });
+        // Observe class changes on body and later on the injected sidebar
+        const startObserving = () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+        };
+        // Sidebar may be injected after fetch, so ensure we start observing afterwards
+        startObserving();
+        // Also re-run after a short delay to catch async injection
+        setTimeout(startObserving, 300);
+    </script>
+</body>
+</html>
