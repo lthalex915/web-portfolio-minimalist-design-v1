@@ -1,0 +1,3 @@
+[[ports]]
+localPort = 80
+externalPort = 3000
